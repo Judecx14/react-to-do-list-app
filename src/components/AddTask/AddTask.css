@@ -1,0 +1,15 @@
+.add-task-container {
+    box-shadow: inset 6px 6px 6px #cbced1,
+                inset -8px -8px 8px #ffffff;
+    border-radius: 8px;
+    padding-inline: 25px;
+    padding-block: 15px;
+    background: transparent;
+    color: #484848;
+    font-family: 'Manrope';
+    display: flex;
+}
+
+.add-task-input:focus {
+    outline: none;
+}
