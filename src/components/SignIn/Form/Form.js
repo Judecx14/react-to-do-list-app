@@ -38,7 +38,7 @@ function Form() {
           return errors;
         }}
         onSubmit={({ email, password }, { setSubmitting }) => {
-          login(email, password);
+          login({ email: email, password: password });
           setSubmitting(false);
         }}
       >

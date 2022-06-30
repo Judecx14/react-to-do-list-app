@@ -1,6 +1,7 @@
 import { useCallback, useContext, useState } from "react";
 import Context from "../context/UserContext";
 import loginService from "../services/login";
+import registerService from "../services/register";
 
 export default function useUser() {
     const { jwt, setJWT } = useContext(Context)
@@ -15,13 +16,28 @@ export default function useUser() {
                 setStatusLogin({ loading: false, error: false })
                 setJWT(jwt)
             })
-            .catch(err => {
+            .catch(_ => {
                 setStatusLogin({
                     loading: false,
                     error: true
                 })
             }, [setStatusLogin])
     }, [setJWT])
+
+    const signUp = useCallback(({ email, password, name, profilePicture }) => {
+        setStatusLogin({ loading: true, error: false })
+        registerService({ email, password, name, profilePicture })
+            .then(jwt => {
+                setStatusLogin({ loading: false, error: false })
+                setJWT(jwt)
+            })
+            .catch(_ => {
+                setStatusLogin({
+                    loading: false,
+                    error: true
+                })
+            }, [setStatusLogin])
+    }, [setJWT]);
 
     const logout = useCallback(() => {
         setJWT(null)
@@ -32,6 +48,7 @@ export default function useUser() {
         isLoading: statusLogin.loading,
         hasError: statusLogin.error,
         login,
-        logout
+        logout,
+        signUp,
     }
 }

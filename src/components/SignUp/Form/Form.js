@@ -3,24 +3,32 @@ import profilePhotoIcon from '../../../assets/profile-picture.png'
 import { Formik } from 'formik';
 import { UserCircleIcon, MailIcon, KeyIcon } from '@heroicons/react/outline'
 import AuthNavigationButton from '../../AuthNavigationButton/AuthNavigationButton';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import utils from '../../../utils/tools';
+import useUser from '../../../hooks/useUser';
+import { useEffect } from 'react';
+import Spinner from '../../SignIn/Form/Spinner';
 
 function Form() {
 
   const pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  const { isLogged, signUp, isLoading, hasError } = useUser();
   const [image, setImage] = useState(profilePhotoIcon);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isLogged) navigate('/home');
+  }, [isLogged, navigate]);
   const handleInputImage = (e) => {
     let file = e.target.files[0];
     utils.getBase64(file, (result) => {
       setImage(result);
-    });    
+    });
   }
 
   return (
     <>
-      <AuthNavigationButton signUp={true}/>
+      <AuthNavigationButton signUp={true} />
       <Formik
         initialValues={{
           name: '',
@@ -48,8 +56,8 @@ function Form() {
           };
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+        onSubmit={({ email, password, name, file }, { setSubmitting }) => {
+          signUp({ email: email, password: password, name: name, profilePicture: file });
           setSubmitting(false);
         }}
       >
@@ -65,7 +73,7 @@ function Form() {
           }) => (
             <form className='flex flex-col justify-center items-center' onSubmit={handleSubmit}>
               <label className='text-center cursor-pointer animate__animated animate__fadeInUp' htmlFor='profile-photo' id='profile-photo-label'>
-                <img src={image} className='w-20 h-20 object-cover rounded-full' alt='label-icon'/>
+                <img src={image} className='w-20 h-20 object-cover rounded-full' alt='label-icon' />
                 Profile Photo
               </label>
               <input onChange={handleInputImage} type='file' name='profile-photo' id='profile-photo' hidden accept="image/png, image/jpeg" />
@@ -129,12 +137,22 @@ function Form() {
               <small className='text-red-400'>
                 {errors.confirm_password && touched.confirm_password && errors.confirm_password}
               </small>
-              <button className='btn-submit mt-5 w-2/5 animate__animated animate__fadeInUp' type="submit" disabled={isSubmitting}>
-                Sign Up
-              </button>
+              {
+                isLoading
+                  ? <Spinner />
+                  : <button className='btn-submit mt-5 w-2/5 animate__animated animate__fadeInUp' type="submit" disabled={isSubmitting}>
+                    Sign Up
+                  </button>
+              }
+
               <small className='mt-5 text-cyan-600 animate__animated animate__fadeInUp'>
                 <Link to='/sign-in' >Do you already have an account?</Link>
               </small>
+              {
+                hasError && <small className='mt-5 text-red-400 animate__animated animate__fadeInUp'>
+                  Something is wrong :c
+                </small>
+              }
             </form>
           )
         }
