@@ -56,8 +56,8 @@ function Form() {
           };
           return errors;
         }}
-        onSubmit={({ email, password, name, file }, { setSubmitting }) => {
-          signUp({ email: email, password: password, name: name, profilePicture: file });
+        onSubmit={({ email, password, confirm_password, name, file }, { setSubmitting }) => {
+          signUp({ email: email, password: password, passwordConfirmation: confirm_password, name: name, profilePicture: file });
           setSubmitting(false);
         }}
       >

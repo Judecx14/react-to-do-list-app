@@ -1,8 +1,12 @@
 import './AddTask.css';
 import { Formik } from 'formik';
-import DropdownCategories from './DropdownCategories/DropdownCategories';
+import { CheckIcon } from '@heroicons/react/outline';
+import useTasks from '../../hooks/useTask';
 
 function AddTask() {
+
+    const { addTask } = useTasks();
+
     return (
         <Formik
             initialValues={{
@@ -20,7 +24,7 @@ function AddTask() {
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                console.log(values);
+                addTask({ body: values.task, category: values.category });
                 setSubmitting(false);
             }}
         >
@@ -34,7 +38,7 @@ function AddTask() {
                 }) => (
                     <>
                         <div className='add-task-container flex justify-between items-center'>
-                            <form onSubmit={handleSubmit}>
+                            <form className='flex items-center justify-between w-full' onSubmit={handleSubmit}>
                                 <input
                                     id='task'
                                     name='task'
@@ -45,8 +49,34 @@ function AddTask() {
                                     onBlur={handleBlur}
                                     value={values.task}
                                 />
+                                <div className='flex'>
+                                    <select 
+                                        name="category"
+                                        value={values.category}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur} 
+                                        id="category" 
+                                        className='h-8 mr-3 button-categories flex justify-around items-center'
+                                    >
+                                        <option value="1">
+                                            Work
+                                        </option>
+                                        <option value="2">
+                                            Home
+                                        </option>
+                                        <option value="3">
+                                            Health
+                                        </option>
+                                        <option value="4">
+                                            School
+                                        </option>
+                                    </select>
+
+                                    <button className='w-12 h-8 button-categories flex justify-around items-center' type='submit'>
+                                        <CheckIcon className='w-5 h-5 text-gray-500' />
+                                    </button>
+                                </div>
                             </form>
-                            <DropdownCategories />
                         </div>
                         <small className='text-red-400'>
                             {errors.task && errors.task}

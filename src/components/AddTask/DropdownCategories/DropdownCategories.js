@@ -14,7 +14,7 @@ function DropdownCategories() {
             </button>
             {
                 isOpen &&
-                <ul className='bg-white rounded-md shadow-lg absolute z-0'>
+                <ul className='bg-white rounded-md shadow-lg absolute z-10'>
                     <li className='flex py-1 px-3 cursor-pointer hover:bg-gray-200'>
                         <BriefcaseIcon className='w-5 h-5 text-gray-500' />
                         &nbsp;Work

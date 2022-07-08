@@ -24,9 +24,9 @@ export default function useUser() {
             }, [setStatusLogin])
     }, [setJWT])
 
-    const signUp = useCallback(({ email, password, name, profilePicture }) => {
+    const signUp = useCallback(({ email, password, passwordConfirmation, name, profilePicture }) => {
         setStatusLogin({ loading: true, error: false })
-        registerService({ email, password, name, profilePicture })
+        registerService({ email, password, passwordConfirmation, name, profilePicture })
             .then(jwt => {
                 setStatusLogin({ loading: false, error: false })
                 setJWT(jwt)

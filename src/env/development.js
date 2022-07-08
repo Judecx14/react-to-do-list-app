@@ -1,3 +1,3 @@
 export const env = {
-    apiUrl: "https://apimocha.com/to-do-lista-app",
+    apiUrl: "http://192.168.5.3:8000/api/",
 }

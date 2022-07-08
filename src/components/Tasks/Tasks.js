@@ -1,31 +1,22 @@
 import './Tasks.css';
 import Task from './Task/Task';
+import useTask from '../../hooks/useTask';
 
 function Tasks() {
 
-    const tasks = [
-        {
-            id: 1,
-            name: 'Cesar',
-            category: 'Work',
-        },
-        {
-            id: 2,
-            name: 'Doctor',
-            category: 'Dance',
-        },
-        {
-            id: 3,
-            name: 'Toro',
-            category: 'Sport',
-        },
+    /* const { obtainTasks, tasks } = useTask();
+    obtainTasks();
+    const _tasks = tasks; */
+
+    const _tasks = [
+        { id: 1, body: 'Hacer el curso de React', category: 1 },
     ]
 
     return (
-        <section className='p-5'>
+        <section>
             {
-                tasks.map(({ name, category, id }) => (
-                    <Task name={name} category={category} key={id}/>
+                _tasks.map(({ body, category, id }) => (
+                    <Task body={body} category={category} key={id} />
                 ))
             }
         </section>
