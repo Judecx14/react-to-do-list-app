@@ -1,0 +1,14 @@
+figure {
+    background: linear-gradient(120deg, var(--cyan), var(--blue));
+    overflow: hidden;
+}
+
+h1 {
+    font-family: 'Lexend Exa';
+}
+
+#img-relative {
+    position: relative;
+    left: -270px;
+    top: 50px;
+}

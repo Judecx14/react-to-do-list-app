@@ -1,0 +1,29 @@
+.input-custom {
+    box-shadow: inset 6px 6px 6px #cbced1,
+                inset -8px -8px 8px #ffffff;
+    border-radius: 8px;
+    padding-inline: 25px;
+    padding-block: 8px;
+    background: transparent;
+    color: #484848;
+    font-family: 'Manrope';
+}
+
+.input-custom:focus {
+    outline: none;
+}
+
+.btn-submit {
+    padding: 8px;
+    font-family: Manrope;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;    
+    background: linear-gradient(120deg, var(--cyan), var(--blue));
+    box-shadow: 8px 8px 18px rgb(191, 191, 191);
+}
+
+#profile-photo-label{
+    font-family: 'Manrope';
+    font-size: 12px;
+}

@@ -1,0 +1,12 @@
+#banner-text-gradient {
+    background: -webkit-linear-gradient(45deg, var(--blue), var(--cyan), purple);
+    min-height: 53px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#banner-subtitle{
+  font-family: 'Red Hat Display';
+  font-weight: 500;
+}

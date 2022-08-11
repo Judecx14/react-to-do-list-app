@@ -1,0 +1,10 @@
+.a-nav-disabled {
+    font-family: 'Red Hat Display';
+    color: #505050;
+    border-bottom: 5px solid var(--blue);
+}
+
+.a-nav-actived {
+    font-family: 'Red Hat Display';
+    color: #c0c0c0;
+}
