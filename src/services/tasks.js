@@ -38,25 +38,24 @@ export async function getTasks({ token }) {
 }
 
 export async function deleteTask({ id, token }) {
-    return fetch(`${ENPOINT}task`, {
-        method: 'POST',
+    return fetch(`${ENPOINT}todos/${id}`, {
+        method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
             'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ id })
+        }
     }).then(res => {
         if (!res.ok) throw new Error(res.statusText);
         return res.json();
     }).then(res => {
-        const { jwt } = res
-        return jwt
+        const { status } = res
+        return status
     })
 }
 
 export async function updateTask({ title, description, category }) {
-    return fetch(`${ENPOINT}task`, {
+    return fetch(`${ENPOINT}todos`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

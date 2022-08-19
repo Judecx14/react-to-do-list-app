@@ -1,0 +1,18 @@
+.button-custom {
+    background-color: #f0f0f0;
+    box-shadow: 
+        12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+        -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    height: 40px;
+    font-family: 'Manrope';
+}
+
+.button-custom:focus {
+    outline: none;
+}
+
+.font-manrope {
+    font-family: 'Manrope';
+    font-weight: 500;
+}

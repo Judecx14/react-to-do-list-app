@@ -4,22 +4,20 @@ const ENPOINT = env.apiUrl;
 
 export default async function register({ email, password, passwordConfirmation, name, profilePicture }) {
 
-    /* let form = new FormData();
+    let form = new FormData();
     let file = await fetch(profilePicture).then(res => res.blob());
-
     form.append("name", name);
     form.append("email", email);
     form.append("password", password);
     form.append("password_confirmation", passwordConfirmation);
-    form.append("profile-picture", file); */
+    form.append("profile_image", file);
 
-    return fetch(`${ENPOINT}register`, {
+    return fetch(`${ENPOINT}auth/register`, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json",
             "Accept": "application/json",
         },
-        body: JSON.stringify({ email, password, password_confirmation: passwordConfirmation, name })
+        body: form
     }).then(res => {
         if (!res.ok) throw new Error(res.statusText);
         return res.json();

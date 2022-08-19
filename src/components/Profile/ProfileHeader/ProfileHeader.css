@@ -1,0 +1,19 @@
+p {
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 500;
+    color: #505050;
+    font-size: 2rem;
+}
+
+.profile-header {
+    background: -webkit-linear-gradient(45deg, var(--blue), var(--cyan), purple);
+    min-height: 53px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+hr {
+    border: 1px solid #afafafaf;
+    width: 50%;
+}

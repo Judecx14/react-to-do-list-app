@@ -1,9 +1,9 @@
 import './Task.css';
 import { useState } from 'react';
-import { AcademicCapIcon, BriefcaseIcon, HomeIcon, HeartIcon, PencilIcon, CheckIcon } from '@heroicons/react/outline';
+import { AcademicCapIcon, BriefcaseIcon, HomeIcon, HeartIcon, PencilIcon, CheckIcon, QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import useTask from '../../../hooks/useTask';
 
-function Task({ id = 0, body = "Ninguna", category = 0}) {
+function Task({ id = 0, body = "Ninguna", category = 0 }) {
 
   const [isEditing, setIsEditing] = useState(false);
   const [newBody, setNewBody] = useState(body);
@@ -22,6 +22,9 @@ function Task({ id = 0, body = "Ninguna", category = 0}) {
       </div>
       <div className='flex items-center pr-8'>
         <small className='mr-5'>
+          {
+            category === 0 && <QuestionMarkCircleIcon className='w-5 h-5 text-gray-500' />
+          }
           {
             category === 1 && <BriefcaseIcon className='w-5 h-5 text-gray-500' />
           }

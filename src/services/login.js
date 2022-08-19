@@ -3,7 +3,7 @@ import { env } from "../env/development"
 const ENPOINT = env.apiUrl;
 
 export default function login({ email, password }) {
-    return fetch(`${ENPOINT}login`, {
+    return fetch(`${ENPOINT}auth/login`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
